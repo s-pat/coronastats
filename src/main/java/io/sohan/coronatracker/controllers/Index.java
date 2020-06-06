@@ -7,17 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Home {
+public class Index {
 
     @Autowired
     CoronaDataService coronaDataService;
 
     @GetMapping("/")
-    public String home(Model model){
+    public String index(Model model){
 
         model.addAttribute("locationStats", coronaDataService.getAllStats());
         model.addAttribute("dailyCount", coronaDataService.getCaseCount());
-        return "home";
+        return "index";
 
 
 
