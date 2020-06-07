@@ -32,7 +32,7 @@
         <th>New Cases Reported</th>
     </tr>
     <tr th:each="locationStat : ${locationStats}">
-        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.covidCountry}"></td>
         <td th:text="${locationStat.yesterdayTotal}"></td>
         <td th:text="${locationStat.latestsTotal}">0</td>
         <td th:text="${locationStat.latestsTotal} - ${locationStat.yesterdayTotal }">0</td>

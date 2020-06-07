@@ -1,5 +1,6 @@
 package io.sohan.coronatracker.controllers;
 
+import io.sohan.coronatracker.models.LocationData;
 import io.sohan.coronatracker.services.CoronaDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,14 @@ public class Index {
 
 
     }
+    @GetMapping("/indexFiltered")
+    public String indexFiltered(Model model){
+
+        model.addAttribute("locationStats", coronaDataService.getAllStats());
+        model.addAttribute("dailyCount", coronaDataService.getCaseCount());
+        return "indexFiltered";
 
 
+
+    }
 }

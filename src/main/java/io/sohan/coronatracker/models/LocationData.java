@@ -1,15 +1,23 @@
 package io.sohan.coronatracker.models;
 
+import java.util.Objects;
+
 public class LocationData {
-    private String State;
+    private String covidCountry;
     private int latestsTotal;
     private int yesterdayTotal;
-    public String getState() {
-        return State;
+    public String getCovidCountry() {
+        return covidCountry;
     }
 
-    public void setState(String state) {
-        State = state;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(covidCountry, latestsTotal, yesterdayTotal);
+    }
+
+    public void setCovidCountry(String covidCountry) {
+        this.covidCountry = covidCountry;
     }
 
     public int getLatestsTotal() {
@@ -31,7 +39,7 @@ public class LocationData {
     @Override
     public String toString() {
         return "LocationData{" +
-                "State='" + State + '\'' +
+                "State='" + covidCountry + '\'' +
                 ", latestsTotal=" + latestsTotal +
                 ", yesterdayTotal=" + yesterdayTotal +
                 '}';

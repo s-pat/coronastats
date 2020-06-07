@@ -7,16 +7,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.xml.stream.Location;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.io.StringReader;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CoronaDataService {
@@ -26,8 +24,8 @@ public class CoronaDataService {
     private Set<LocationData> stats = new HashSet<>();
     private int caseCount;
     private int yesterdayCount;
-    public Set<LocationData> getAllStats() {
-        return stats;
+    public List<LocationData> getAllStats() {
+        return allStats;
     }
 
     public int getCaseCount() {
@@ -40,7 +38,7 @@ public class CoronaDataService {
 
     public void fetchData() throws IOException, InterruptedException {
          int dailyCasecount = 0;
-        Set<LocationData> todaysStats = new HashSet<>();
+        List<LocationData> todaysStats = new ArrayList<>();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DATA_URL)).build();
@@ -55,15 +53,20 @@ public class CoronaDataService {
             //String state = record.get("Province_State");
             //System.out.println(state);
             LocationData locationData = new LocationData();
-            locationData.setState(record.get("Country/Region"));
+            locationData.setCovidCountry(record.get("Country/Region"));
             locationData.setLatestsTotal(Integer.parseInt(record.get(record.size() -1)));
             locationData.setYesterdayTotal(Integer.parseInt(record.get(record.size()-2)));
             dailyCasecount += locationData.getLatestsTotal();
             System.out.println(locationData);
             todaysStats.add(locationData);
+            HashSet<Object> seen=new HashSet<>();
+            todaysStats.removeIf(e->!seen.add(e.getCovidCountry()));
         }
 
-        this.stats = todaysStats;
+        for(LocationData location : todaysStats){
+            System.out.println(location.getCovidCountry());
+        }
+        this.allStats = todaysStats;
         this.caseCount = dailyCasecount;
 
 
