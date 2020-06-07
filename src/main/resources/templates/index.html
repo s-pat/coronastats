@@ -37,8 +37,7 @@
             <td th:text="${locationStat.covidCountry}"></td>
             <td th:text="${locationStat.yesterdayTotal}"></td>
             <td th:text="${locationStat.latestsTotal}">0</td>
-            <td th:text="${locationStat.latestsTotal} - ${locationStat.yesterdayTotal }">0</td>
-
+            <td th:text="${locationStat.newCases}">0</td>
         </tr>
         </tbody>
     </table>
@@ -77,7 +76,7 @@
                      <td>${data[i].covidCountry}</td>
             <td>${data[i].yesterdayTotal}</td>
             <td>${data[i].latestsTotal}</td>
-            <td>${data[i].latestsTotal} - ${data[i].yesterdayTotal }</td>
+            <td>${data[i].newCases}</td>
 
                     </tr>
             `

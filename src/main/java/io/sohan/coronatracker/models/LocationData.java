@@ -6,10 +6,18 @@ public class LocationData {
     private String covidCountry;
     private int latestsTotal;
     private int yesterdayTotal;
+    private int newCases;
     public String getCovidCountry() {
         return covidCountry;
     }
 
+    public int getNewCases() {
+        return newCases;
+    }
+
+    public void setNewCases(int newCases) {
+        this.newCases = newCases;
+    }
 
     @Override
     public int hashCode() {

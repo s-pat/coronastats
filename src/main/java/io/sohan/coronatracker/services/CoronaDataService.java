@@ -56,6 +56,7 @@ public class CoronaDataService {
             locationData.setCovidCountry(record.get("Country/Region"));
             locationData.setLatestsTotal(Integer.parseInt(record.get(record.size() -1)));
             locationData.setYesterdayTotal(Integer.parseInt(record.get(record.size()-2)));
+            locationData.setNewCases(Integer.parseInt(record.get(record.size() -1)) -Integer.parseInt(record.get(record.size()-2)));
             dailyCasecount += locationData.getLatestsTotal();
             System.out.println(locationData);
             todaysStats.add(locationData);
