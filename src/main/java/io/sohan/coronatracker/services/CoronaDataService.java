@@ -53,15 +53,17 @@ public class CoronaDataService {
             //String state = record.get("Province_State");
             //System.out.println(state);
             LocationData locationData = new LocationData();
+
             locationData.setCovidCountry(record.get("Country/Region"));
+            locationData.setRegion(record.get("Province/State"));
             locationData.setLatestsTotal(Integer.parseInt(record.get(record.size() -1)));
             locationData.setYesterdayTotal(Integer.parseInt(record.get(record.size()-2)));
             locationData.setNewCases(Integer.parseInt(record.get(record.size() -1)) -Integer.parseInt(record.get(record.size()-2)));
             dailyCasecount += locationData.getLatestsTotal();
             System.out.println(locationData);
             todaysStats.add(locationData);
-            HashSet<Object> seen=new HashSet<>();
-            todaysStats.removeIf(e->!seen.add(e.getCovidCountry()));
+            //HashSet<Object> seen=new HashSet<>();
+            //todaysStats.removeIf(e->!seen.add(e.getCovidCountry()));
         }
 
         for(LocationData location : todaysStats){

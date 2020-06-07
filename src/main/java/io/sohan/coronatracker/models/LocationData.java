@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class LocationData {
     private String covidCountry;
+    private String region;
     private int latestsTotal;
     private int yesterdayTotal;
     private int newCases;
@@ -13,6 +14,14 @@ public class LocationData {
 
     public int getNewCases() {
         return newCases;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public void setNewCases(int newCases) {
