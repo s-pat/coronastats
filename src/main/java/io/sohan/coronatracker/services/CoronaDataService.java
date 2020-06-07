@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.xml.stream.Location;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -15,18 +16,18 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CoronaDataService {
 
     private String DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
     private List<LocationData> allStats = new ArrayList<>();
+    private Set<LocationData> stats = new HashSet<>();
     private int caseCount;
-
-    public List<LocationData> getAllStats() {
-        return allStats;
+    private int yesterdayCount;
+    public Set<LocationData> getAllStats() {
+        return stats;
     }
 
     public int getCaseCount() {
@@ -39,7 +40,7 @@ public class CoronaDataService {
 
     public void fetchData() throws IOException, InterruptedException {
          int dailyCasecount = 0;
-        List<LocationData> todaysStats = new ArrayList<>();
+        Set<LocationData> todaysStats = new HashSet<>();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DATA_URL)).build();
@@ -55,13 +56,14 @@ public class CoronaDataService {
             //System.out.println(state);
             LocationData locationData = new LocationData();
             locationData.setState(record.get("Country/Region"));
-            locationData.setLatestsTotal(Integer.parseInt(record.get(record.size() - 1)));
+            locationData.setLatestsTotal(Integer.parseInt(record.get(record.size() -1)));
+            locationData.setYesterdayTotal(Integer.parseInt(record.get(record.size()-2)));
             dailyCasecount += locationData.getLatestsTotal();
             System.out.println(locationData);
             todaysStats.add(locationData);
         }
 
-        this.allStats = todaysStats;
+        this.stats = todaysStats;
         this.caseCount = dailyCasecount;
 
 
