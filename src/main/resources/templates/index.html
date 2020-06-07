@@ -18,9 +18,11 @@
 
     <p class="lead">Total Count for today is <strong><i><span th:text="${dailyCount}"></span></i></strong>.</p>
 </div>
+
 <div class="container" >
-    <input id="txtSearch" type="text" name ="keyword" placeholder="Filter">
-    <table  class="table table-hover">
+    <input class="form-control form-control-lg" id="txtSearch" type="text" name ="keyword" placeholder="Filter by Country or Region">
+    <br>
+        <table  class="table table-hover">
         <caption style="text-align: center"><a href="https://github.com/CSSEGISandData/COVID-19"  style="color: grey;text-decoration: none;">Data Provided by Johns Hopkins University </a></caption>
         <tr>
             <th>
