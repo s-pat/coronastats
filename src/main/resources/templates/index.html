@@ -7,7 +7,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
 
 <head>
-    <title>Corona Daily Stats</title>
+    <title>Confirmed Corona Tracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -17,10 +17,15 @@
 
 <body>
 <div  class="jumbotron " style="text-align: center;padding-bottom:10px;">
-    <h1 class="display-3">Coronavirus Daily Stats</h1>
+
+    <h1 class="display-3">Confirmed Coronavirus Cases<br> Daily Stats</h1>
+    <blockquote class="blockquote">
+        <i> <p class="mb-0">If the world is going to get better, it's going to be up to you.</p></i>
+        <p>Barack Obama, 44th U.S. President </p>
+    </blockquote>
     <hr class="my-4">
 
-    <p class="lead">Total Count for today is <strong><i><span th:text="${dailyCount}"></span></i></strong>.</p>
+    <p class="lead">Total Confirmed Count for today is <strong><i><span style="color: orangered" th:text="${dailyCount}"></span></i></strong>.</p>
     <hr class="my-1">
     <br>
     <a style="color: grey;text-decoration: none; padding-right:5px; " href="https://www.linkedin.com/in/sohan-patel" target="_blank"><i class="fab fa-linkedin-in fa-2x"></i></a>
@@ -57,6 +62,9 @@
         </tr>
         </tbody>
     </table>
+    <div class="alert alert-info" role="alert">
+        Please stay safe. <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html"  target="_blank" class="alert-link">Click here for More COVID-19/Corona Related Information</a>.
+    </div>
 </div>
 </body>
 <script th:inline="javascript">
