@@ -5,4 +5,4 @@
 [Link to Live App](https://corona-daily.herokuapp.com)
 
 
-[Data Provided BY JHU](https://github.com/CSEGISandDAta)
+[Data Provided BY JHU](https://github.com/CSSEGISandData)
